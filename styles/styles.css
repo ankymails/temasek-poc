@@ -113,6 +113,12 @@ h2 {
   margin-bottom: 0.5em;
 }
 
+/* Inside a white chapter card, a white h2 would be invisible — use the brand
+ * colour so section titles like "From Our Chairman" remain legible. */
+main > .section.light h2 {
+  color: var(--tr-brand);
+}
+
 h3 {
   font-size: var(--heading-font-size-l);
   color: var(--tr-brand);

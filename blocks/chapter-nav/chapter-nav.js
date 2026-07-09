@@ -13,7 +13,9 @@
  */
 
 const CHAPTERS = [
-  { path: '/from-complexity-to-clarity', label: 'From Complexity to Clarity' },
+  // Chapter 1 ("From Complexity to Clarity") is the homepage's opening section,
+  // so it points at the site root rather than a standalone page.
+  { path: '/', label: 'From Complexity to Clarity' },
   { path: '/from-our-chairman', label: 'From Our Chairman' },
   { path: '/strategy', label: 'Strategy' },
   { path: '/performance-and-portfolio', label: 'Performance & Portfolio' },
