@@ -368,6 +368,15 @@ main > .section.light > div {
   padding: 0 10px;
 }
 
+/* Chairman signature: a standalone inline image that must stay small
+ * (~200px) and left-aligned, not stretch full card width. */
+main .section img[alt*="Sign" i] {
+  width: auto;
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
 /* hero stays full-bleed edge to edge */
 main > .section:first-of-type {
   margin: 0;
