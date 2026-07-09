@@ -377,6 +377,7 @@ main .section img[alt*="Sign" i] {
   display: block;
 }
 
+
 /* hero stays full-bleed edge to edge */
 main > .section:first-of-type {
   margin: 0;
@@ -492,5 +493,21 @@ main > .section.accordion {
 
   .accordion-toggle-all {
     padding: 10px 22px;
+  }
+}
+
+/* Chapter title (h1) in the full-bleed masthead section (quote-banner) must be
+ * inset to the content width instead of running edge-to-edge. The section has
+ * zero padding so the banner/nav are full-bleed, so constrain the h1 itself. */
+main > .section.quote-banner-container h1 {
+  max-width: 1030px;
+  margin: 32px auto 12px;
+  padding: 0 24px;
+  color: var(--tr-brand);
+}
+
+@media (width >= 900px) {
+  main > .section.quote-banner-container h1 {
+    padding: 0 32px;
   }
 }
