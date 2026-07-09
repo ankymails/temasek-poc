@@ -60,6 +60,31 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
+  // tools/importer/parsers/chapter-nav.js
+  function parse2(element, { document }) {
+    const prevA = element.querySelector('.link-to-page[data-type="prev"], a[aria-label^="Previous"]');
+    const nextA = element.querySelector('.link-to-page[data-type="next"], a[aria-label^="Next"]');
+    const titleBtn = element.querySelector(".cmp-contenttopnav__page-link");
+    let titleCell = "";
+    if (titleBtn) {
+      const defSpan = titleBtn.querySelector('span[data-section="default"]') || titleBtn.querySelector("span");
+      if (defSpan) titleCell = defSpan.textContent.replace(/\s+/g, " ").trim();
+    }
+    const mkLink = (a) => {
+      if (!a) return "";
+      const link = document.createElement("a");
+      link.href = a.getAttribute("href") || "#";
+      const label = (a.querySelector(".link-text") || a).textContent.trim();
+      link.textContent = label;
+      return link;
+    };
+    const prevCell = mkLink(prevA);
+    const nextCell = mkLink(nextA);
+    const cells = [[prevCell, titleCell, nextCell]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "chapter-nav", cells });
+    element.replaceWith(block);
+  }
+
   // tools/importer/transformers/temasek-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
@@ -247,13 +272,18 @@ var CustomImportScript = (() => {
 
   // tools/importer/import-letter-page.js
   var parsers = {
-    "quote-banner": parse
+    "quote-banner": parse,
+    "chapter-nav": parse2
   };
   var PAGE_TEMPLATE = {
     name: "letter-page",
     description: "Temasek Review letter/message page (e.g. From Our Chairman)",
     urls: ["https://www.temasekreview.com.sg/from-our-chairman.html"],
     blocks: [
+      {
+        name: "chapter-nav",
+        instances: [".contenttopnav"]
+      },
       {
         name: "quote-banner",
         instances: ["section.blockquote-banner--chairman"]

@@ -3,6 +3,7 @@
 
 // PARSER IMPORTS
 import quoteBannerParser from './parsers/quote-banner.js';
+import chapterNavParser from './parsers/chapter-nav.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/temasek-cleanup.js';
@@ -12,6 +13,7 @@ import sectionsTransformer from './transformers/temasek-sections.js';
 // PARSER REGISTRY
 const parsers = {
   'quote-banner': quoteBannerParser,
+  'chapter-nav': chapterNavParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
@@ -20,6 +22,10 @@ const PAGE_TEMPLATE = {
   description: 'Temasek Review letter/message page (e.g. From Our Chairman)',
   urls: ['https://www.temasekreview.com.sg/from-our-chairman.html'],
   blocks: [
+    {
+      name: 'chapter-nav',
+      instances: ['.contenttopnav'],
+    },
     {
       name: 'quote-banner',
       instances: ['section.blockquote-banner--chairman'],

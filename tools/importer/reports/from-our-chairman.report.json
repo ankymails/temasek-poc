@@ -2,10 +2,11 @@
   "status": "success",
   "url": "https://www.temasekreview.com.sg/from-our-chairman.html",
   "path": "from-our-chairman",
-  "timestamp": "2026-07-09T08:43:42.170Z",
+  "timestamp": "2026-07-09T08:50:30.799Z",
   "title": "From Our Chairman | Temasek Review 2026",
   "template": "letter-page",
   "blocks": [
+    "chapter-nav",
     "quote-banner"
   ]
 }
