@@ -254,10 +254,12 @@ function decorateAccordionSections(main) {
     });
 
     // Match the source: the control sits inline on the chapter H1 row,
-    // right-aligned. The H1 lives in the banner (first) section; wrap it and
-    // the control in a flex header row. Fall back to placing it before the
-    // first accordion section if no H1 is found.
-    const bannerHeading = main.querySelector(':scope > .section:first-of-type h1');
+    // right-aligned. The chapter H1 lives in the banner section (which is not
+    // itself an accordion section). Find the first such H1 regardless of
+    // section order, wrap it and the control in a flex header row. Fall back to
+    // placing the control before the first accordion section if no H1 exists.
+    const bannerHeading = [...main.querySelectorAll('h1')]
+      .find((h) => !h.closest('.section.accordion'));
     if (bannerHeading) {
       const headerRow = document.createElement('div');
       headerRow.className = 'chapter-header-row';
