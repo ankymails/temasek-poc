@@ -2,7 +2,7 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import columnsFeatureParser from './parsers/columns-feature.js';
+import quoteBannerParser from './parsers/quote-banner.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/temasek-cleanup.js';
@@ -11,7 +11,7 @@ import sectionsTransformer from './transformers/temasek-sections.js';
 
 // PARSER REGISTRY
 const parsers = {
-  'columns-feature': columnsFeatureParser,
+  'quote-banner': quoteBannerParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
@@ -21,12 +21,12 @@ const PAGE_TEMPLATE = {
   urls: ['https://www.temasekreview.com.sg/from-our-chairman.html'],
   blocks: [
     {
-      name: 'columns-feature',
+      name: 'quote-banner',
       instances: ['section.blockquote-banner--chairman'],
     },
   ],
   sections: [
-    { id: 'chairman-masthead', name: 'Chairman Masthead', selector: 'section.blockquote-banner--chairman', style: null, blocks: ['columns-feature'], defaultContent: [] },
+    { id: 'chairman-masthead', name: 'Chairman Masthead', selector: 'section.blockquote-banner--chairman', style: null, blocks: ['quote-banner'], defaultContent: [] },
     { id: 'from-our-chairman', name: 'From Our Chairman Letter', selector: '#from-our-chairman', style: 'light', blocks: [], defaultContent: ['.pagecontent__header h1', '#from-our-chairman .page-content__content-desc'] },
   ],
 };

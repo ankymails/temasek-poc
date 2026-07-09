@@ -41,54 +41,22 @@ var CustomImportScript = (() => {
     default: () => import_letter_page_default
   });
 
-  // tools/importer/parsers/columns-feature.js
+  // tools/importer/parsers/quote-banner.js
   function parse(element, { document }) {
-    const imageCol = [];
-    const textCol = [];
-    const bannerImage = element.querySelector(":scope > figure.blockquote-banner__image, figure.blockquote-banner__image");
-    const bannerQuote = element.querySelector("blockquote.blockquote-banner__quote-card");
-    if (bannerImage && bannerQuote) {
-      const img = bannerImage.querySelector("picture, img");
-      if (img) imageCol.push(img);
-      const content = bannerQuote.querySelector(".blockquote__content") || bannerQuote;
-      textCol.push(...Array.from(content.children));
-      const cells2 = [[imageCol, textCol]];
-      const block2 = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells: cells2 });
-      element.replaceWith(block2);
-      return;
-    }
-    const isBlockquote = element.matches("blockquote") || element.tagName === "BLOCKQUOTE";
-    if (isBlockquote) {
-      const figure = element.querySelector("figure");
-      const img = element.querySelector("figure img, img");
-      if (figure) imageCol.push(figure);
-      else if (img) imageCol.push(img);
-      const content = element.querySelector(".blockquote__content");
-      const textNodes = content ? Array.from(content.children) : Array.from(element.children).filter((c) => !c.matches("figure"));
-      textCol.push(...textNodes);
-      if (imageCol.length === 0 && textCol.length === 0) {
-        element.replaceWith(...element.childNodes);
-        return;
-      }
-      const cells2 = [[imageCol, textCol]];
-      const block2 = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells: cells2 });
-      element.replaceWith(block2);
-      return;
-    }
-    const cols = Array.from(element.querySelectorAll(":scope > div"));
-    const textColEl = cols.find((c) => !c.classList.contains("chart-image")) || cols[0];
-    const imageColEl = cols.find((c) => c.classList.contains("chart-image")) || cols[cols.length - 1];
-    const leftCell = [];
-    const rightCell = [];
-    if (textColEl) leftCell.push(...Array.from(textColEl.childNodes));
-    const chartImg = imageColEl ? imageColEl.querySelector("img, picture") : null;
-    if (chartImg) rightCell.push(chartImg);
-    if (leftCell.length === 0 && rightCell.length === 0) {
+    const figure = element.querySelector("figure.blockquote-banner__image, figure");
+    const quote = element.querySelector("blockquote.blockquote-banner__quote-card, blockquote");
+    const img = figure ? figure.querySelector("picture, img") : null;
+    const content = quote ? quote.querySelector(".blockquote__content") || quote : null;
+    const quoteNodes = content ? Array.from(content.children) : [];
+    if (!img && quoteNodes.length === 0) {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const cells = [[leftCell, rightCell]];
-    const block = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells });
+    const cells = [
+      [img || ""],
+      [quoteNodes]
+    ];
+    const block = WebImporter.Blocks.createBlock(document, { name: "quote-banner", cells });
     element.replaceWith(block);
   }
 
@@ -136,6 +104,52 @@ var CustomImportScript = (() => {
         el.removeAttribute("data-video-id");
         el.removeAttribute("onclick");
       });
+      const OVERSIZED_SVG_TO_PNG = {
+        "TRM26_Operating_as_One_Temasek.svg": "TRM26_Operating_as_One_Temasek.png",
+        "TRM26_10Years_Net_Portfolio_Value.svg": "TRM26_10Years_Net_Portfolio_Value.png",
+        "TRM26_Total_Shareholder_Return_wof.svg": "TRM26_Total_Shareholder_Return_wof.png",
+        "TRM26_Towards_Net_Zero_wof.svg": "TRM26_Towards_Net_Zero_wof.png",
+        // Sustainability chapter delivers the same chart without the _wof suffix.
+        "TRM26_Towards_Net_Zero.svg": "TRM26_Towards_Net_Zero_wof.png",
+        "TRM26_Three_Segment_T2030_Strategy.svg": "TRM26_Three_Segment_T2030_Strategy.png",
+        "TRM26_Four_Pillars_of_Temaseks_AI_Strategy.svg": "TRM26_Four_Pillars_of_Temaseks_AI_Strategy.png",
+        // Performance & Portfolio oversized charts
+        "TRM26_Key_Investments_and_Divestments_for_the_Year.svg": "TRM26_Key_Investments_and_Divestments_for_the_Year.png",
+        "TRM26_Promising_New_Areas.svg": "TRM26_Promising_New_Areas.png",
+        "TRM26_Asset_Management_Companies.svg": "TRM26_Asset_Management_Companies.png",
+        "TRM26_Portfolio_Returns_by_Portfolio_Segments.svg": "TRM26_Portfolio_Returns_by_Portfolio_Segments.png",
+        "TRM26_Volatility_of_Returns.svg": "TRM26_Volatility_of_Returns.png",
+        "TRM26_Portfolio_by_Underlying_Sector_Exposure.svg": "TRM26_Portfolio_by_Underlying_Sector_Exposure.png",
+        "TRM26_Global_Direct_Investments_by_Headquarters.svg": "TRM26_Global_Direct_Investments_by_Headquarters.png",
+        "TRM26_Global_Direct_Investments_by_Sector.svg": "TRM26_Global_Direct_Investments_by_Sector.png",
+        "TRM26_Illustration_of_Fundamental_Earnings_Impact.svg": "TRM26_Illustration_of_Fundamental_Earnings_Impact.png",
+        "TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.svg": "TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.png",
+        "TRM26_Portfolio_by_Currency.svg": "TRM26_Portfolio_by_Currency.png",
+        // Institution oversized charts
+        "TRM26_Protection_of_Temasek_Past_Reserves.svg": "TRM26_Protection_of_Temasek_Past_Reserves.png",
+        "TRM26_WA_Incentives_Key_Team.svg": "TRM26_WA_Incentives_Key_Team.png",
+        // Employee-demographics slider: three views x three geographies. We
+        // rasterized the default Global view of each; the Singapore / Outside-SG
+        // variants (all >20KB, so unusable as SVG on DA) fall back to the Global
+        // PNG so no oversized SVG reference survives.
+        "TRM26_Employees_by_Nationality_Global.svg": "TRM26_Employees_by_Nationality_Global.png",
+        "TRM26_Employees_by_Nationality_Singapore.svg": "TRM26_Employees_by_Nationality_Global.png",
+        "TRM26_Employees_by_Nationality_Outside_of_Singapore.svg": "TRM26_Employees_by_Nationality_Global.png",
+        "TRM26_Employees_by_Age_Global.svg": "TRM26_Employees_by_Age_Global.png",
+        "TRM26_Employees_by_Age_Singapore.svg": "TRM26_Employees_by_Age_Global.png",
+        "TRM26_Employees_by_Age_Outside_of_Singapore.svg": "TRM26_Employees_by_Age_Global.png",
+        "TRM26_Employees_by_Gender_Global.svg": "TRM26_Employees_by_Gender_Global.png",
+        "TRM26_Employees_by_Gender_Singapore.svg": "TRM26_Employees_by_Gender_Global.png",
+        "TRM26_Employees_by_Gender_Outside_of_Singapore.svg": "TRM26_Employees_by_Gender_Global.png"
+      };
+      const CHART_BASE = "/assets/charts";
+      element.querySelectorAll('img[src$=".svg"], img[src*=".svg?"]').forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        const file = src.split("/").pop().split("?")[0];
+        if (OVERSIZED_SVG_TO_PNG[file]) {
+          img.setAttribute("src", `${CHART_BASE}/${OVERSIZED_SVG_TO_PNG[file]}`);
+        }
+      });
     }
   }
 
@@ -152,8 +166,6 @@ var CustomImportScript = (() => {
         btn.remove();
       });
       WebImporter.DOMUtils.remove(element, [
-        ".contenttopnav",
-        ".cmp-contenttopnav",
         ".page-content__content-share-wrap",
         ".page-content__content-share",
         ".footnote-section",
@@ -164,6 +176,20 @@ var CustomImportScript = (() => {
         "script",
         "style",
         "noscript"
+      ]);
+      element.querySelectorAll(".dt-container, .dataTables_wrapper").forEach((widget) => {
+        const bodyTable = widget.querySelector(".dt-scroll-body table, table.dataTable");
+        if (bodyTable) {
+          bodyTable.removeAttribute("class");
+          widget.replaceWith(bodyTable);
+        } else {
+          widget.remove();
+        }
+      });
+      WebImporter.DOMUtils.remove(element, [
+        ".dt-scroll-head",
+        ".dt-scroll-foot",
+        ".dt-scroll"
       ]);
     }
     if (hookName === TransformHook2.afterTransform) {
@@ -185,9 +211,22 @@ var CustomImportScript = (() => {
   function transform3(hookName, element, payload) {
     if (hookName !== TransformHook3.afterTransform) return;
     const template = payload && payload.template;
+    const doc = element.ownerDocument;
+    if (template && template.autoAccordion) {
+      const wrappers = [...element.querySelectorAll(".page-content__content-wrapper[id]")];
+      for (let i = wrappers.length - 1; i >= 0; i -= 1) {
+        const sectionEl = wrappers[i];
+        const metaBlock = WebImporter.Blocks.createBlock(doc, {
+          name: "Section Metadata",
+          cells: { style: "light, accordion" }
+        });
+        sectionEl.after(metaBlock);
+        sectionEl.before(doc.createElement("hr"));
+      }
+      return;
+    }
     const sections = template && Array.isArray(template.sections) ? template.sections : [];
     if (sections.length < 2) return;
-    const doc = element.ownerDocument;
     for (let i = sections.length - 1; i >= 0; i -= 1) {
       const section = sections[i];
       if (!section || !section.selector) continue;
@@ -208,7 +247,7 @@ var CustomImportScript = (() => {
 
   // tools/importer/import-letter-page.js
   var parsers = {
-    "columns-feature": parse
+    "quote-banner": parse
   };
   var PAGE_TEMPLATE = {
     name: "letter-page",
@@ -216,12 +255,12 @@ var CustomImportScript = (() => {
     urls: ["https://www.temasekreview.com.sg/from-our-chairman.html"],
     blocks: [
       {
-        name: "columns-feature",
+        name: "quote-banner",
         instances: ["section.blockquote-banner--chairman"]
       }
     ],
     sections: [
-      { id: "chairman-masthead", name: "Chairman Masthead", selector: "section.blockquote-banner--chairman", style: null, blocks: ["columns-feature"], defaultContent: [] },
+      { id: "chairman-masthead", name: "Chairman Masthead", selector: "section.blockquote-banner--chairman", style: null, blocks: ["quote-banner"], defaultContent: [] },
       { id: "from-our-chairman", name: "From Our Chairman Letter", selector: "#from-our-chairman", style: "light", blocks: [], defaultContent: [".pagecontent__header h1", "#from-our-chairman .page-content__content-desc"] }
     ]
   };
