@@ -28,7 +28,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 20% 90%;
+  object-position: 0% 85%;
   display: block;
 }
 
@@ -88,11 +88,11 @@
 
 @media (width >= 900px) {
   .quote-banner.block {
-    min-height: 620px;
-    padding: 80px 66px 60px;
+    min-height: 560px;
+    padding: 60px 66px;
   }
 
   .quote-banner.block .quote-banner-card {
-    padding: 80px 56px;
+    padding: 64px 48px;
   }
 }

@@ -496,18 +496,12 @@ main > .section.accordion {
   }
 }
 
-/* Chapter title (h1) in the full-bleed masthead section (quote-banner) must be
- * inset to the content width instead of running edge-to-edge. The section has
- * zero padding so the banner/nav are full-bleed, so constrain the h1 itself. */
+/* Chapter title (h1) in the full-bleed masthead section (quote-banner) aligns
+ * to the quote-banner card's left edge (same 1150px centered width as the
+ * content cards), instead of running edge-to-edge. */
 main > .section.quote-banner-container h1 {
-  max-width: 1030px;
+  max-width: 1150px;
   margin: 32px auto 12px;
-  padding: 0 24px;
+  padding: 0;
   color: var(--tr-brand);
-}
-
-@media (width >= 900px) {
-  main > .section.quote-banner-container h1 {
-    padding: 0 32px;
-  }
 }
