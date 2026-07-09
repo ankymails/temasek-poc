@@ -95,6 +95,18 @@ export default function transform(hookName, element, payload) {
       'TRM26_Towards_Net_Zero_wof.svg': 'TRM26_Towards_Net_Zero_wof.png',
       'TRM26_Three_Segment_T2030_Strategy.svg': 'TRM26_Three_Segment_T2030_Strategy.png',
       'TRM26_Four_Pillars_of_Temaseks_AI_Strategy.svg': 'TRM26_Four_Pillars_of_Temaseks_AI_Strategy.png',
+      // Performance & Portfolio oversized charts
+      'TRM26_Key_Investments_and_Divestments_for_the_Year.svg': 'TRM26_Key_Investments_and_Divestments_for_the_Year.png',
+      'TRM26_Promising_New_Areas.svg': 'TRM26_Promising_New_Areas.png',
+      'TRM26_Asset_Management_Companies.svg': 'TRM26_Asset_Management_Companies.png',
+      'TRM26_Portfolio_Returns_by_Portfolio_Segments.svg': 'TRM26_Portfolio_Returns_by_Portfolio_Segments.png',
+      'TRM26_Volatility_of_Returns.svg': 'TRM26_Volatility_of_Returns.png',
+      'TRM26_Portfolio_by_Underlying_Sector_Exposure.svg': 'TRM26_Portfolio_by_Underlying_Sector_Exposure.png',
+      'TRM26_Global_Direct_Investments_by_Headquarters.svg': 'TRM26_Global_Direct_Investments_by_Headquarters.png',
+      'TRM26_Global_Direct_Investments_by_Sector.svg': 'TRM26_Global_Direct_Investments_by_Sector.png',
+      'TRM26_Illustration_of_Fundamental_Earnings_Impact.svg': 'TRM26_Illustration_of_Fundamental_Earnings_Impact.png',
+      'TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.svg': 'TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.png',
+      'TRM26_Portfolio_by_Currency.svg': 'TRM26_Portfolio_by_Currency.png',
     };
     const CHART_BASE = '/assets/charts';
     element.querySelectorAll('img[src$=".svg"], img[src*=".svg?"]').forEach((img) => {

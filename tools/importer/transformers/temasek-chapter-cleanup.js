@@ -48,6 +48,29 @@ export default function transform(hookName, element, payload) {
       'style',
       'noscript',
     ]);
+
+    // DataTables.js renders a scrollable widget that DUPLICATES the table into
+    // separate header/body/footer scroll panes. Those duplicate <div> panes get
+    // misread by the importer as EDS blocks (e.g. a "logo" / date-named block),
+    // producing 404s. Collapse the widget down to the single real <table>:
+    // keep the body-pane table, drop the header/footer scroll clones and the
+    // scroll wrappers, so only clean tabular content remains.
+    element.querySelectorAll('.dt-container, .dataTables_wrapper').forEach((widget) => {
+      const bodyTable = widget.querySelector('.dt-scroll-body table, table.dataTable');
+      if (bodyTable) {
+        // Remove attributes/classes that would make cells look like block rows.
+        bodyTable.removeAttribute('class');
+        widget.replaceWith(bodyTable);
+      } else {
+        widget.remove();
+      }
+    });
+    // Remove leftover DataTables scroll chrome if any survived.
+    WebImporter.DOMUtils.remove(element, [
+      '.dt-scroll-head',
+      '.dt-scroll-foot',
+      '.dt-scroll',
+    ]);
   }
 
   if (hookName === TransformHook.afterTransform) {

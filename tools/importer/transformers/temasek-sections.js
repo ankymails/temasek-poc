@@ -27,10 +27,31 @@ export default function transform(hookName, element, payload) {
   if (hookName !== TransformHook.afterTransform) return;
 
   const template = payload && payload.template;
+  const doc = element.ownerDocument;
+
+  // Auto-detect mode: chapter pages all share the same structure — a banner
+  // followed by N accordion sub-chapters (<section class="page-content__content-wrapper" id="...">).
+  // Rather than hardcode section ids per page, when the template sets
+  // autoAccordion:true we derive the sections from the DOM: every content
+  // wrapper becomes a `light, accordion` chapter card, preceded by an <hr>.
+  if (template && template.autoAccordion) {
+    const wrappers = [...element.querySelectorAll('.page-content__content-wrapper[id]')];
+    // Reverse so insertions don't shift earlier wrappers.
+    for (let i = wrappers.length - 1; i >= 0; i -= 1) {
+      const sectionEl = wrappers[i];
+      const metaBlock = WebImporter.Blocks.createBlock(doc, {
+        name: 'Section Metadata',
+        cells: { style: 'light, accordion' },
+      });
+      sectionEl.after(metaBlock);
+      // Break before each sub-chapter (also separates it from the banner above).
+      sectionEl.before(doc.createElement('hr'));
+    }
+    return;
+  }
+
   const sections = template && Array.isArray(template.sections) ? template.sections : [];
   if (sections.length < 2) return;
-
-  const doc = element.ownerDocument;
 
   // Reverse order so DOM insertions don't shift earlier sections.
   for (let i = sections.length - 1; i >= 0; i -= 1) {
