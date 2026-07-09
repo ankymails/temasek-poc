@@ -1,16 +1,136 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #fff;
+  color: #000;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  border-top: 1px solid #eee;
 }
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
+  max-width: 1030px;
   padding: 40px 24px 24px;
 }
 
 footer .footer p {
   margin: 0;
+}
+
+/* top region: brand + link columns */
+footer .footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px 40px;
+}
+
+footer .footer-brand img {
+  width: 147px;
+  height: auto;
+}
+
+footer .footer-col h2,
+footer .footer-social h2 {
+  margin: 0 0 14px;
+  color: #3c1053;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+footer .footer-col ul,
+footer .footer-social ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .footer-col li {
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+/* social channels: icon row */
+footer .footer-social ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+footer .footer-social li {
+  margin: 0;
+}
+
+/* show only the icon, hide the text label (icon conveys the channel) */
+footer .footer-social a {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0;
+}
+
+footer .footer-col a,
+footer .footer-social a,
+footer .footer-legal a {
+  color: #000;
+  text-decoration: none;
+}
+
+footer .footer-col a:hover,
+footer .footer-social a:hover,
+footer .footer-legal a:hover {
+  color: #3c1053;
+  text-decoration: underline;
+}
+
+footer .footer-social a .icon {
+  width: 20px;
+  height: 20px;
+  color: #000;
+}
+
+footer .footer-social a .icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+footer .footer-social a:hover .icon {
+  color: #3c1053;
+}
+
+/* bottom legal bar */
+footer .footer-legal {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+footer .footer-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+footer .footer-legal li {
+  margin: 0;
+}
+
+footer .footer-legal p {
+  color: #000;
+  font-size: 13px;
+}
+
+@media (width >= 600px) {
+  footer .footer-top {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* brand spans the full top row above the columns */
+  footer .footer-brand {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (width >= 900px) {
