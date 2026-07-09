@@ -1,0 +1,93 @@
+[
+  {
+    "id": "main",
+    "components": [
+      "section"
+    ]
+  },
+  {
+    "id": "section",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "cards",
+      "cards-video",
+      "callout-case-study",
+      "chapter-nav",
+      "columns",
+      "columns-feature",
+      "columns-stats",
+      "fragment",
+      "hero-review",
+      "logo-grid",
+      "quote-banner",
+      "table-segments",
+      "widget"
+    ]
+  },
+  {
+    "id": "cards-video",
+    "components": [
+      "card-video"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "columns-feature",
+    "components": [
+      "column-feature"
+    ]
+  },
+  {
+    "id": "column-feature",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-stats",
+    "components": [
+      "column-stat"
+    ]
+  },
+  {
+    "id": "column-stat",
+    "components": [
+      "text",
+      "image",
+      "title"
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "logo-grid",
+    "components": [
+      "logo"
+    ]
+  }
+]

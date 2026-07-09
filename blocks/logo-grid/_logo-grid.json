@@ -1,0 +1,63 @@
+{
+  "definitions": [
+    {
+      "title": "Logo Grid",
+      "id": "logo-grid",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Logo Grid",
+              "filter": "logo-grid"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Logo",
+      "id": "logo",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Logo",
+              "model": "logo"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "logo",
+      "fields": [
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Logo Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Alt Text",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "logo-grid",
+      "components": [
+        "logo"
+      ]
+    }
+  ]
+}
