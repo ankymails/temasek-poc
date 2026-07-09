@@ -1,0 +1,39 @@
+{
+  "variantName": "logo-grid",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-08T16:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/strategy.html",
+    "originPage": "Temasek Review 2026 - Strategy chapter (Asset Management Companies)",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "logo-grid",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "each row = one logo image (image-only cell); rendered as a centered responsive grid",
+    "buttonCount": 0,
+    "imageCount": 10
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "grids of partner / brand / company logos",
+      "asset-manager or portfolio-company logo walls",
+      "uniformly-sized image grids without titles or descriptions"
+    ],
+    "notSuitableFor": [
+      "cards with titles and body text (use cards or cards-video)",
+      "video teasers (use cards-video)",
+      "tinted case-study callout boxes (use callout-case-study)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/strategy"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T16:50:00.000Z"
+  }
+}

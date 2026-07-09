@@ -10,7 +10,33 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toClassName,
 } from './aem.js';
+
+/**
+ * Applies section metadata: reads any `.section-metadata` block, applies its
+ * key/value pairs to the parent section (e.g. `style: light` -> section class
+ * `light`), then removes the block. This repo's aem.js does not do this, so it
+ * is handled here.
+ * @param {Element} main
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll('div.section-metadata').forEach((sm) => {
+    const section = sm.closest('.section');
+    if (!section) return;
+    const meta = readBlockConfig(sm);
+    Object.keys(meta).forEach((key) => {
+      if (key === 'style') {
+        const styles = meta.style.split(',').map((s) => toClassName(s.trim())).filter((s) => s);
+        styles.forEach((s) => section.classList.add(s));
+      } else {
+        section.dataset[toClassName(key)] = meta[key];
+      }
+    });
+    sm.parentElement.remove();
+  });
+}
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   const innerTT = window.trustedTypes.createPolicy('tt-inner', {
@@ -143,6 +169,94 @@ function decorateButtons(main) {
 }
 
 /**
+ * Turns each section tagged with the `accordion` style into a collapsible
+ * panel: the section's first heading becomes a clickable toggle header and the
+ * rest of the section content collapses beneath it. Sections are collapsed by
+ * default (matching the source chapter pages). When two or more accordion
+ * sections are present, an "Expand all / Collapse all" control is inserted
+ * before the first one.
+ * @param {Element} main The main element
+ */
+function decorateAccordionSections(main) {
+  const sections = [...main.querySelectorAll(':scope > .section.accordion')];
+  if (sections.length === 0) return;
+
+  sections.forEach((section) => {
+    const contentWrapper = section.querySelector(':scope > .default-content-wrapper') || section;
+    const heading = contentWrapper.querySelector('h1, h2, h3, h4, h5, h6');
+    if (!heading) return;
+
+    // Build the clickable header from the heading.
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'accordion-toggle';
+    button.setAttribute('aria-expanded', 'false');
+    while (heading.firstChild) button.append(heading.firstChild);
+    heading.append(button);
+    heading.classList.add('accordion-header');
+
+    // Move everything after the heading (across all wrappers) into a panel.
+    const panel = document.createElement('div');
+    panel.className = 'accordion-panel';
+    panel.hidden = true;
+
+    // Collect all siblings of the heading within its wrapper, plus any
+    // subsequent wrappers (blocks live in their own *-wrapper divs).
+    const toMove = [];
+    let node = heading.nextSibling;
+    while (node) {
+      toMove.push(node);
+      node = node.nextSibling;
+    }
+    let wrapper = contentWrapper.nextElementSibling;
+    while (wrapper) {
+      const next = wrapper.nextElementSibling;
+      toMove.push(wrapper);
+      wrapper = next;
+    }
+    toMove.forEach((n) => panel.append(n));
+
+    // Place the header and panel directly under the section.
+    contentWrapper.after(panel);
+    if (contentWrapper !== section && contentWrapper.contains(heading)) {
+      contentWrapper.replaceWith(heading);
+    }
+
+    const panelId = `accordion-panel-${section.dataset.sectionId || Math.random().toString(36).slice(2, 8)}`;
+    panel.id = panelId;
+    button.setAttribute('aria-controls', panelId);
+
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!expanded));
+      panel.hidden = expanded;
+      section.classList.toggle('accordion-open', !expanded);
+    });
+  });
+
+  // Expand all / Collapse all control.
+  if (sections.length > 1) {
+    const control = document.createElement('button');
+    control.type = 'button';
+    control.className = 'accordion-toggle-all';
+    control.textContent = 'Expand all';
+    control.addEventListener('click', () => {
+      const anyCollapsed = sections.some((s) => !s.classList.contains('accordion-open'));
+      sections.forEach((s) => {
+        const btn = s.querySelector('.accordion-toggle');
+        const panel = s.querySelector('.accordion-panel');
+        if (!btn || !panel) return;
+        btn.setAttribute('aria-expanded', String(anyCollapsed));
+        panel.hidden = !anyCollapsed;
+        s.classList.toggle('accordion-open', anyCollapsed);
+      });
+      control.textContent = anyCollapsed ? 'Collapse all' : 'Expand all';
+    });
+    sections[0].before(control);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,8 +265,10 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateAccordionSections(main);
 }
 
 /**

@@ -1,0 +1,77 @@
+/*
+ * Logo grid: centered, responsive, wrapping row of uniformly-sized logos.
+ * No card chrome (no borders, titles, or backgrounds).
+ * Mirrors the source markup which uses a centered flex row
+ * (display:flex; flex-wrap:wrap; justify-content:center; align-items:center)
+ * with a -10px negative gutter and 10px 20px cell padding.
+ * Logos are constrained to a consistent max height/width and centered
+ * both vertically and horizontally within each cell.
+ */
+.logo-grid > ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px 16px;
+  margin: 24px 0;
+  padding: 0;
+}
+
+/* two logos per row on mobile */
+.logo-grid .logo-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 40%;
+  min-width: 120px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+/* the authored cell wrapper around the picture */
+.logo-grid .logo-grid-item > div,
+.logo-grid .logo-grid-item picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-grid .logo-grid-item img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+@media (width >= 600px) {
+  .logo-grid > ul {
+    gap: 24px;
+    margin: 32px 0;
+  }
+
+  .logo-grid .logo-grid-item {
+    /* let logos sit in a single centered wrapping row like the source */
+    flex: 0 1 auto;
+    min-width: 140px;
+    max-width: 170px;
+  }
+
+  .logo-grid .logo-grid-item img {
+    max-height: 40px;
+  }
+}
+
+@media (width >= 900px) {
+  .logo-grid > ul {
+    gap: 28px 40px;
+  }
+
+  .logo-grid .logo-grid-item {
+    min-width: 150px;
+    max-width: 180px;
+    padding: 10px 20px;
+  }
+}

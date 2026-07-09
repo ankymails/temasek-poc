@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "projectType": "doc"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.temasekreview.com.sg/"
+      ],
+      "representativeUrl": "https://www.temasekreview.com.sg/",
+      "coverageGaps": [],
+      "description": "Temasek Review annual report homepage: branded hero masthead, chairman feature, chapter sections (strategy, performance & portfolio, institution, sustainability, community stewardship) with charts, stats, tables and video cards.",
+      "blocks": [
+        {
+          "name": "hero-review",
+          "instances": [
+            "section.hero-banner#from-complexity-to-clarity"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "#from-our-chairman blockquote",
+            "#sense-adapt-and-thrive .row"
+          ]
+        },
+        {
+          "name": "columns-stats",
+          "instances": [
+            "#performance-highlights .group-section__chart:nth-of-type(1)",
+            "#performance-highlights .group-section__chart:nth-of-type(2)"
+          ]
+        },
+        {
+          "name": "table-segments",
+          "instances": [
+            "#portfolio-segments .chart-container"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".group-section-videos .row.space-40"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "from-complexity-to-clarity",
+          "name": "Hero Masthead",
+          "selector": "section.hero-banner#from-complexity-to-clarity",
+          "style": null,
+          "blocks": [
+            "hero-review"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "from-our-chairman",
+          "name": "From Our Chairman",
+          "selector": "#from-our-chairman",
+          "style": "light",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": [
+            "#from-our-chairman h2.content-box__title"
+          ]
+        },
+        {
+          "id": "strategy",
+          "name": "Strategy",
+          "selector": "#strategy",
+          "style": "light",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": [
+            "#strategy h2.content-box__title",
+            "#strategy figure.content-box__banner"
+          ]
+        },
+        {
+          "id": "performance-and-portfolio",
+          "name": "Performance & Portfolio",
+          "selector": "#performance-and-portfolio",
+          "style": "light",
+          "blocks": [
+            "columns-stats",
+            "table-segments"
+          ],
+          "defaultContent": [
+            "#performance-and-portfolio h2.content-box__title",
+            "#performance-and-portfolio figure.content-box__banner"
+          ]
+        },
+        {
+          "id": "institution",
+          "name": "Institution",
+          "selector": "#institution",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            "#institution h2.content-box__title",
+            "#institution figure.content-box__banner",
+            "#our-people h3",
+            "#our-people p",
+            "#our-people a.btn-primary"
+          ]
+        },
+        {
+          "id": "sustainability",
+          "name": "Sustainability",
+          "selector": "#sustainability",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            "#sustainability h2.content-box__title",
+            "#sustainability figure.content-box__banner",
+            "#sustainability .group-section__header p",
+            "#sustainability .chart-image h4",
+            "#sustainability .chart-image img",
+            "#sustainability a.btn-primary"
+          ]
+        },
+        {
+          "id": "community-stewardship",
+          "name": "Community Stewardship",
+          "selector": "#community-stewardship",
+          "style": "light",
+          "blocks": [
+            "cards-video"
+          ],
+          "defaultContent": [
+            "#community-stewardship h2.content-box__title",
+            "#community-stewardship figure.content-box__banner",
+            "#making-a-difference",
+            "#community-stewardship .group-section-videos .row .col-12 p",
+            "#community-stewardship .group-section-videos .row .col-12 a.btn-primary"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chapter-page",
+      "urls": [
+        "https://www.temasekreview.com.sg/strategy.html"
+      ],
+      "representativeUrl": "https://www.temasekreview.com.sg/strategy.html",
+      "coverageGaps": [],
+      "description": "Temasek Review editorial chapter page (e.g. Strategy): full-width banner + H1, then sub-chapter white chapter cards of long-form prose with inline infographic images, tinted case-study callout boxes, and asset-manager logo grids.",
+      "blocks": [
+        {
+          "name": "callout-case-study",
+          "instances": [
+            ".bg-container.bg-light-green.m-t-40"
+          ]
+        },
+        {
+          "name": "logo-grid",
+          "instances": [
+            ".row.logo-list"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "strategy-banner",
+          "name": "Chapter Banner",
+          "selector": ".pagecontent-banner",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".pagecontent-banner-img",
+            ".pagecontent__header"
+          ]
+        },
+        {
+          "id": "sense-adapt-and-thrive",
+          "name": "3.1 Sense, Adapt, and Thrive",
+          "selector": "#sense-adapt-and-thrive",
+          "style": "light, accordion",
+          "blocks": [],
+          "defaultContent": [
+            "#sense-adapt-and-thrive .page-content__content-inner"
+          ]
+        },
+        {
+          "id": "investment-approach",
+          "name": "3.2 Investment Approach",
+          "selector": "#investment-approach",
+          "style": "light, accordion",
+          "blocks": [
+            "callout-case-study",
+            "logo-grid"
+          ],
+          "defaultContent": [
+            "#investment-approach .page-content__content-inner"
+          ]
+        },
+        {
+          "id": "our-ai-strategy",
+          "name": "3.3 Our AI Strategy",
+          "selector": "#our-ai-strategy",
+          "style": "light, accordion",
+          "blocks": [
+            "callout-case-study"
+          ],
+          "defaultContent": [
+            "#our-ai-strategy .page-content__content-inner"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "letter-page",
+      "urls": [
+        "https://www.temasekreview.com.sg/from-our-chairman.html"
+      ],
+      "representativeUrl": "https://www.temasekreview.com.sg/from-our-chairman.html",
+      "coverageGaps": [],
+      "description": "Temasek Review letter/message page (e.g. From Our Chairman): a portrait-beside-quote masthead (columns-feature), a banner title (H1), and one white chapter-card section of long-form letter prose with H3 subheads and a signature block. No accordion.",
+      "blocks": [
+        {
+          "name": "columns-feature",
+          "instances": [
+            "section.blockquote-banner--chairman"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "chairman-masthead",
+          "name": "Chairman Masthead",
+          "selector": "section.blockquote-banner--chairman",
+          "style": null,
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "from-our-chairman",
+          "name": "From Our Chairman Letter",
+          "selector": "#from-our-chairman",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            ".pagecontent__header h1",
+            "#from-our-chairman .page-content__content-desc"
+          ]
+        }
+      ]
+    }
+  ]
+}

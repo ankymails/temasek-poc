@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-stats",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-08T14:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/",
+    "originPage": "Temasek Review 2026 homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "stats",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "two side-by-side columns each with a large figure (h2), a label (h4), an optional caption and an optional chart image",
+    "buttonCount": 0,
+    "imageCount": 2
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "key performance statistics side by side",
+      "big-number callouts with labels/captions",
+      "stat + accompanying chart panels"
+    ],
+    "notSuitableFor": [
+      "text-beside-image feature rows",
+      "repeating card grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T14:48:00.000Z"
+  }
+}

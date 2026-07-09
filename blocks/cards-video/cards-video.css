@@ -1,0 +1,102 @@
+/* Block: cards-video
+ * Visual design migrated from temasekreview.com.sg "Making a Difference" video teasers.
+ * Values extracted from source computed styles.
+ */
+
+.cards-video > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.cards-video > ul > li {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+/* thumbnail with rounded corners and play-button overlay */
+.cards-video .cards-video-card-image {
+  position: relative;
+  line-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cards-video .cards-video-card-image picture,
+.cards-video .cards-video-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cards-video .cards-video-card-image img {
+  aspect-ratio: 970 / 550;
+  object-fit: cover;
+}
+
+/* synthesized circular play badge (source uses an icomoon glyph inside a
+   gradient circle, positioned toward the bottom-right of the thumbnail) */
+.cards-video .cards-video-card-image::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background:
+    var(--tr-brand-gradient, linear-gradient(to right, #471cb0 0%, #3c10a5 100%))
+    no-repeat center;
+
+  /* white play triangle, nudged right to sit optically centered */
+  background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M9 6.5v11l9-5.5z"/></svg>'),
+    var(--tr-brand-gradient, linear-gradient(to right, #471cb0 0%, #3c10a5 100%));
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  pointer-events: none;
+}
+
+/* text block below the thumbnail */
+.cards-video .cards-video-card-body {
+  margin: 0;
+  padding: 30px 0 0;
+}
+
+.cards-video .cards-video-card-body h4 {
+  margin: 0;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 25.5px;
+  letter-spacing: 0.425px;
+}
+
+.cards-video .cards-video-card-body p {
+  margin: 12px 0 0;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 25.5px;
+}
+
+/* two cards side by side from tablet up */
+@media (width >= 900px) {
+  .cards-video > ul {
+    flex-direction: row;
+  }
+
+  .cards-video > ul > li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,308 @@
+/* eslint-disable */
+var CustomImportScript = (() => {
+  var __defProp = Object.defineProperty;
+  var __defProps = Object.defineProperties;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // tools/importer/import-letter-page.js
+  var import_letter_page_exports = {};
+  __export(import_letter_page_exports, {
+    default: () => import_letter_page_default
+  });
+
+  // tools/importer/parsers/columns-feature.js
+  function parse(element, { document }) {
+    const imageCol = [];
+    const textCol = [];
+    const bannerImage = element.querySelector(":scope > figure.blockquote-banner__image, figure.blockquote-banner__image");
+    const bannerQuote = element.querySelector("blockquote.blockquote-banner__quote-card");
+    if (bannerImage && bannerQuote) {
+      const img = bannerImage.querySelector("picture, img");
+      if (img) imageCol.push(img);
+      const content = bannerQuote.querySelector(".blockquote__content") || bannerQuote;
+      textCol.push(...Array.from(content.children));
+      const cells2 = [[imageCol, textCol]];
+      const block2 = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells: cells2 });
+      element.replaceWith(block2);
+      return;
+    }
+    const isBlockquote = element.matches("blockquote") || element.tagName === "BLOCKQUOTE";
+    if (isBlockquote) {
+      const figure = element.querySelector("figure");
+      const img = element.querySelector("figure img, img");
+      if (figure) imageCol.push(figure);
+      else if (img) imageCol.push(img);
+      const content = element.querySelector(".blockquote__content");
+      const textNodes = content ? Array.from(content.children) : Array.from(element.children).filter((c) => !c.matches("figure"));
+      textCol.push(...textNodes);
+      if (imageCol.length === 0 && textCol.length === 0) {
+        element.replaceWith(...element.childNodes);
+        return;
+      }
+      const cells2 = [[imageCol, textCol]];
+      const block2 = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells: cells2 });
+      element.replaceWith(block2);
+      return;
+    }
+    const cols = Array.from(element.querySelectorAll(":scope > div"));
+    const textColEl = cols.find((c) => !c.classList.contains("chart-image")) || cols[0];
+    const imageColEl = cols.find((c) => c.classList.contains("chart-image")) || cols[cols.length - 1];
+    const leftCell = [];
+    const rightCell = [];
+    if (textColEl) leftCell.push(...Array.from(textColEl.childNodes));
+    const chartImg = imageColEl ? imageColEl.querySelector("img, picture") : null;
+    if (chartImg) rightCell.push(chartImg);
+    if (leftCell.length === 0 && rightCell.length === 0) {
+      element.replaceWith(...element.childNodes);
+      return;
+    }
+    const cells = [[leftCell, rightCell]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "columns-feature", cells });
+    element.replaceWith(block);
+  }
+
+  // tools/importer/transformers/temasek-cleanup.js
+  var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  function transform(hookName, element, payload) {
+    if (hookName === TransformHook.beforeTransform) {
+      WebImporter.DOMUtils.remove(element, [
+        ".hero-banner__background",
+        "#skip-to-main",
+        ".tr-navigation",
+        "footer",
+        ".main-footer",
+        "#disclaimer-box",
+        "#cookieConsent",
+        ".cookieConsent",
+        ".ct-container",
+        '[role="dialog"]',
+        "script",
+        "style",
+        "noscript"
+      ]);
+      element.querySelectorAll(".print-show").forEach((el) => {
+        const pic = el.closest("picture") || el;
+        pic.remove();
+      });
+    }
+    if (hookName === TransformHook.afterTransform) {
+      WebImporter.DOMUtils.remove(element, [
+        "header",
+        "footer",
+        "nav",
+        ".tr-navigation",
+        "#disclaimer-box",
+        "#cookieConsent",
+        ".cookieConsent",
+        ".ct-container",
+        '[role="dialog"]',
+        "iframe",
+        "link",
+        "noscript"
+      ]);
+      element.querySelectorAll("*").forEach((el) => {
+        el.removeAttribute("data-vertical-align");
+        el.removeAttribute("data-video-id");
+        el.removeAttribute("onclick");
+      });
+    }
+  }
+
+  // tools/importer/transformers/temasek-chapter-cleanup.js
+  var TransformHook2 = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  function transform2(hookName, element, payload) {
+    if (hookName === TransformHook2.beforeTransform) {
+      element.querySelectorAll(".page-content__content-link").forEach((btn) => {
+        const text = btn.textContent.trim();
+        if (text) btn.replaceWith(btn.ownerDocument.createTextNode(text));
+        else btn.remove();
+      });
+      element.querySelectorAll(".pagecontent__header button, .page-content__section-heading button, .page-content__content-toggle, button.page-content__section-toggle").forEach((btn) => {
+        btn.remove();
+      });
+      WebImporter.DOMUtils.remove(element, [
+        ".contenttopnav",
+        ".cmp-contenttopnav",
+        ".page-content__content-share-wrap",
+        ".page-content__content-share",
+        ".footnote-section",
+        ".print-section-divider",
+        ".print-show",
+        ".disclaimer-print",
+        ".tr-navigation",
+        "script",
+        "style",
+        "noscript"
+      ]);
+    }
+    if (hookName === TransformHook2.afterTransform) {
+      element.querySelectorAll(".tr-separator, .print-show, .print-hide-inverse").forEach((el) => {
+        if (el.textContent.trim() === "" && !el.querySelector("img, picture")) el.remove();
+      });
+      element.querySelectorAll("*").forEach((el) => {
+        el.removeAttribute("data-vertical-align");
+        el.removeAttribute("data-horizontal-align");
+        el.removeAttribute("data-height");
+        el.removeAttribute("data-type");
+        el.removeAttribute("style");
+      });
+    }
+  }
+
+  // tools/importer/transformers/temasek-sections.js
+  var TransformHook3 = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  function transform3(hookName, element, payload) {
+    if (hookName !== TransformHook3.afterTransform) return;
+    const template = payload && payload.template;
+    const sections = template && Array.isArray(template.sections) ? template.sections : [];
+    if (sections.length < 2) return;
+    const doc = element.ownerDocument;
+    for (let i = sections.length - 1; i >= 0; i -= 1) {
+      const section = sections[i];
+      if (!section || !section.selector) continue;
+      const sectionEl = element.querySelector(section.selector);
+      if (!sectionEl) continue;
+      if (section.style) {
+        const metaBlock = WebImporter.Blocks.createBlock(doc, {
+          name: "Section Metadata",
+          cells: { style: section.style }
+        });
+        sectionEl.after(metaBlock);
+      }
+      if (i > 0) {
+        sectionEl.before(doc.createElement("hr"));
+      }
+    }
+  }
+
+  // tools/importer/import-letter-page.js
+  var parsers = {
+    "columns-feature": parse
+  };
+  var PAGE_TEMPLATE = {
+    name: "letter-page",
+    description: "Temasek Review letter/message page (e.g. From Our Chairman)",
+    urls: ["https://www.temasekreview.com.sg/from-our-chairman.html"],
+    blocks: [
+      {
+        name: "columns-feature",
+        instances: ["section.blockquote-banner--chairman"]
+      }
+    ],
+    sections: [
+      { id: "chairman-masthead", name: "Chairman Masthead", selector: "section.blockquote-banner--chairman", style: null, blocks: ["columns-feature"], defaultContent: [] },
+      { id: "from-our-chairman", name: "From Our Chairman Letter", selector: "#from-our-chairman", style: "light", blocks: [], defaultContent: [".pagecontent__header h1", "#from-our-chairman .page-content__content-desc"] }
+    ]
+  };
+  var transformers = [
+    transform,
+    transform2,
+    ...PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [transform3] : []
+  ];
+  function executeTransformers(hookName, element, payload) {
+    const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
+    transformers.forEach((transformerFn) => {
+      try {
+        transformerFn.call(null, hookName, element, enhancedPayload);
+      } catch (e) {
+        console.error(`Transformer failed at ${hookName}:`, e);
+      }
+    });
+  }
+  function findBlocksOnPage(document, template) {
+    const pageBlocks = [];
+    template.blocks.forEach((blockDef) => {
+      blockDef.instances.forEach((selector) => {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length === 0) {
+          console.warn(`Block "${blockDef.name}" selector not found: ${selector}`);
+        }
+        elements.forEach((element) => {
+          pageBlocks.push({
+            name: blockDef.name,
+            selector,
+            element,
+            section: blockDef.section || null
+          });
+        });
+      });
+    });
+    console.log(`Found ${pageBlocks.length} block instances on page`);
+    return pageBlocks;
+  }
+  var import_letter_page_default = {
+    transform: (payload) => {
+      const {
+        document,
+        url,
+        html,
+        params
+      } = payload;
+      const main = document.body;
+      executeTransformers("beforeTransform", main, payload);
+      const pageBlocks = findBlocksOnPage(document, PAGE_TEMPLATE);
+      pageBlocks.forEach((block) => {
+        if (!block.element.parentNode) return;
+        const parser = parsers[block.name];
+        if (parser) {
+          try {
+            parser(block.element, { document, url, params });
+          } catch (e) {
+            console.error(`Failed to parse ${block.name} (${block.selector}):`, e);
+          }
+        } else {
+          console.warn(`No parser found for block: ${block.name}`);
+        }
+      });
+      executeTransformers("afterTransform", main, payload);
+      const hr = document.createElement("hr");
+      main.appendChild(hr);
+      WebImporter.rules.createMetadata(main, document);
+      WebImporter.rules.transformBackgroundImages(main, document);
+      WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+      const pathname = new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html$/, "");
+      const path = WebImporter.FileUtils.sanitizePath(pathname || "/index");
+      return [{
+        element: main,
+        path,
+        report: {
+          title: document.title,
+          template: PAGE_TEMPLATE.name,
+          blocks: pageBlocks.map((b) => b.name)
+        }
+      }];
+    }
+  };
+  return __toCommonJS(import_letter_page_exports);
+})();

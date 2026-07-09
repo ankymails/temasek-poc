@@ -1,0 +1,49 @@
+/* Callout case-study: tinted mint-green rounded highlight box embedded mid-flow
+   inside a chapter's prose (matches temasekreview.com.sg .bg-light-green). */
+.callout-case-study {
+  background-color: #e7f4f4;
+  color: var(--text-color, #242a2d);
+  border-radius: var(--tr-card-radius, 20px);
+  padding: 30px;
+  margin: 40px 0;
+}
+
+.callout-case-study > h2,
+.callout-case-study > h3,
+.callout-case-study > h4 {
+  margin: 0 0 30px;
+  color: var(--tr-brand, #471cb0);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0.425px;
+}
+
+.callout-case-study .callout-case-study-media {
+  margin: 30px 0 40px;
+  line-height: 0;
+}
+
+.callout-case-study .callout-case-study-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.callout-case-study p {
+  margin: 0 0 20px;
+  font-size: 17px;
+  line-height: 25.5px;
+  color: var(--text-color, #242a2d);
+}
+
+.callout-case-study p:last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .callout-case-study {
+    padding: 50px;
+  }
+}

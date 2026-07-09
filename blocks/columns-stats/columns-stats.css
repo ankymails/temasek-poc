@@ -1,0 +1,78 @@
+/* Block: columns-stats -- design migrated from temasekreview.com.sg #performance-highlights */
+
+/* Row: the two columns. Stacks on mobile, side-by-side on desktop. */
+.columns-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Each column (cell) */
+.columns-stats > div > div {
+  margin: 0;
+}
+
+/* Large statistic figure (h2). Override global white/500 heading style. */
+.columns-stats h2 {
+  margin: 0;
+  color: var(--tr-brand);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.425px;
+}
+
+/* Label (h4). Override global h4 size. */
+.columns-stats h4 {
+  margin: 0 0 10px;
+  color: var(--text-color);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.425px;
+}
+
+/* Caption paragraph (instance 1) */
+.columns-stats p {
+  margin: 0 0 20px;
+  color: #000;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.425px;
+}
+
+/* Chart image sits beneath the stat text (instance 1) */
+.columns-stats p.columns-stats-chart {
+  margin: 20px 0 0;
+}
+
+.columns-stats img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Instance 2: number callouts render as tinted rounded cards */
+.columns-stats.columns-stats-callouts .columns-stats-callout {
+  padding: 20px 30px 30px;
+  border-radius: 20px;
+  background-color: rgb(13 149 142 / 10%);
+}
+
+.columns-stats.columns-stats-callouts h4 {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .columns-stats > div {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .columns-stats > div > div {
+    flex: 1;
+  }
+}

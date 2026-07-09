@@ -1,0 +1,28 @@
+:root {
+  /* Temasek Review brand tokens (extracted from temasekreview.com.sg) */
+  --heading-font-family: noto-sans, arial, sans-serif;
+  --body-font-family: noto-sans, arial, sans-serif;
+  --background-color: #fff;
+  --text-color: #242a2d;
+  --link-color: #471cb0;
+  --link-hover-color: #3c10a5;
+
+  /* brand palette */
+  --tr-brand: #471cb0;
+  --tr-brand-dark: #3c10a5;
+  --tr-brand-gradient: linear-gradient(to right, #471cb0 0%, #3c10a5 100%);
+  --tr-page-gradient: linear-gradient(180deg, #471cb0 0%, #5a2fc4 40%, #fff 100%);
+  --tr-card-bg: #fff;
+  --tr-card-radius: 20px;
+  --tr-card-shadow: 0 0 50px 0 rgb(0 0 0 / 10%);
+
+  /* heading sizes */
+  --heading-size-xxl: 44px;
+  --heading-size-xl: 30px;
+  --heading-size-l: 18px;
+  --heading-size-m: 14px;
+  --heading-size-s: 16px;
+  --heading-size-xs: 14px;
+  --section-padding: 40px;
+  --nav-height: 64px;
+}

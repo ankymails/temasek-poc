@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.temasekreview.com.sg/strategy.html",
+  "path": "strategy",
+  "timestamp": "2026-07-08T17:18:27.256Z",
+  "title": "Strategy | Temasek Review 2026",
+  "template": "chapter-page",
+  "blocks": [
+    "callout-case-study",
+    "callout-case-study",
+    "callout-case-study",
+    "callout-case-study",
+    "logo-grid",
+    "logo-grid",
+    "logo-grid"
+  ]
+}

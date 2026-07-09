@@ -1,0 +1,40 @@
+{
+  "variantName": "callout-case-study",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-08T16:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/strategy.html",
+    "originPage": "Temasek Review 2026 - Strategy chapter",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "callout",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "tinted rounded box with heading + media image + stacked body prose",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "case-study / example highlight boxes embedded mid-article",
+      "tinted callout panels with a heading, an image and prose",
+      "spotlight boxes inside long-form chapter content"
+    ],
+    "notSuitableFor": [
+      "side-by-side text-beside-image feature rows (use columns-feature)",
+      "large numeric statistic callouts (use columns-stats)",
+      "video-teaser cards (use cards-video)",
+      "logo grids (use logo-grid)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/strategy"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T16:50:00.000Z"
+  }
+}

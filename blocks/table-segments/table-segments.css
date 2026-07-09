@@ -1,0 +1,144 @@
+/*
+ * Table Segments Block
+ * Portfolio-returns data table with color-coded segment rows and a
+ * full-width chart image beneath. Values extracted from the source
+ * (temasekreview.com.sg #portfolio-segments table).
+ */
+
+.table-segments.block {
+  /* per-segment brand colors (row order: pfa / gdi / tpc) */
+  --seg-pfa: rgb(18 166 57);
+  --seg-pfa-tint: rgb(18 166 57 / 10%);
+  --seg-gdi: rgb(0 158 228);
+  --seg-gdi-tint: rgb(0 158 228 / 10%);
+  --seg-tpc: rgb(99 49 105);
+  --seg-tpc-tint: rgb(99 49 105 / 10%);
+  --seg-header-line: rgb(0 107 166);
+
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-segments.block table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 17px;
+  letter-spacing: 0.425px;
+  line-height: 1.15;
+}
+
+/* ---- header row ---- */
+.table-segments.block table thead th {
+  padding: 20px 10px;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media (width >= 600px) {
+  .table-segments.block table thead th {
+    padding: 20px;
+  }
+}
+
+/* first header cell is intentionally blank and borderless */
+.table-segments.block table thead th:first-child {
+  border: 0;
+}
+
+/* the two metric headers carry the teal underline framing */
+.table-segments.block table thead th:not(:first-child) {
+  border: 1px solid var(--seg-header-line);
+  border-bottom: 0;
+}
+
+/* ---- data rows ---- */
+.table-segments.block table tbody td {
+  padding: 20px 10px;
+  border: 5px solid #fff;
+  vertical-align: middle;
+  color: #fff;
+}
+
+/* first (segment description) cell: solid color, left aligned, light weight */
+.table-segments.block table tbody td:first-child {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.15;
+  text-align: left;
+}
+
+/* the bold segment lead-in name */
+.table-segments.block table tbody td:first-child strong {
+  display: block;
+  margin-bottom: 0.4em;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* percentage cells: light tint, colored bold number, centered */
+.table-segments.block table tbody td:not(:first-child) {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+/*
+ * Percentage cells use a 10% color tint. On the source that tint composites
+ * over white. To reproduce the same appearance regardless of the section
+ * background (the page sits on a purple gradient), the tint is layered over a
+ * solid white base rather than relying on an ancestor being white.
+ */
+
+/* row 1: Partnerships, Funds & Asset Management Companies (green) */
+.table-segments.block table tbody tr:nth-child(1) td:first-child {
+  background-color: var(--seg-pfa);
+}
+
+.table-segments.block table tbody tr:nth-child(1) td:not(:first-child) {
+  background-color: #fff;
+  background-image: linear-gradient(var(--seg-pfa-tint), var(--seg-pfa-tint));
+  color: var(--seg-pfa);
+}
+
+/* row 2: Global Direct Investments (blue) */
+.table-segments.block table tbody tr:nth-child(2) td:first-child {
+  background-color: var(--seg-gdi);
+}
+
+.table-segments.block table tbody tr:nth-child(2) td:not(:first-child) {
+  background-color: #fff;
+  background-image: linear-gradient(var(--seg-gdi-tint), var(--seg-gdi-tint));
+  color: var(--seg-gdi);
+}
+
+/* row 3: Singapore-based Temasek Portfolio Companies (purple) */
+.table-segments.block table tbody tr:nth-child(3) td:first-child {
+  background-color: var(--seg-tpc);
+}
+
+.table-segments.block table tbody tr:nth-child(3) td:not(:first-child) {
+  background-color: #fff;
+  background-image: linear-gradient(var(--seg-tpc-tint), var(--seg-tpc-tint));
+  color: var(--seg-tpc);
+}
+
+.table-segments.block table sup {
+  font-size: 0.65em;
+}
+
+/* ---- full-width chart image below the table ---- */
+.table-segments.block .table-segments-chart {
+  margin: 24px 0 0;
+}
+
+.table-segments.block .table-segments-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

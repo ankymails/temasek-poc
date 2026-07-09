@@ -1,0 +1,169 @@
+/*
+ * hero-review -- full-bleed branded masthead
+ * Reproduces the Temasek Review homepage hero:
+ *   - solid brand-purple base with a decorative wave overlay (banner-bg.png)
+ *   - white Temasek logo top-left
+ *   - large "From Complexity to Clarity" lockup centred near the top
+ *   - four overlapping circular photo tiles arranged as a collage
+ * Values extracted from section.hero-banner on temasekreview.com.sg.
+ */
+
+/* full bleed: cancel the section container's max-width/padding */
+.hero-review-container .hero-review-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.hero-review.block {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #fff;
+  background-color: var(--tr-brand); /* #471cb0 */
+  background-image: url('https://www.temasekreview.com.sg/assets/homepage/banner-bg-mobile.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* the single cell is the positioning canvas for the collage */
+.hero-review > div > div {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-review p {
+  margin: 0;
+}
+
+.hero-review picture {
+  display: block;
+}
+
+/* logo lockup, top-left */
+.hero-review .hero-review-logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  margin: 0;
+}
+
+.hero-review .hero-review-logo img {
+  display: block;
+  width: 110px;
+  height: auto;
+}
+
+/* title lockup -- centred near the top (clears the nav on small screens) */
+.hero-review .hero-review-lockup {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 70vw);
+  z-index: 5;
+}
+
+.hero-review .hero-review-lockup img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* collage tiles -- absolute, overlapping */
+.hero-review .hero-review-tile {
+  position: absolute;
+  margin: 0;
+}
+
+.hero-review .hero-review-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* mobile collage (stacked/overlapping, scaled to viewport width) */
+.hero-review .hero-review-tile-1 {
+  left: -6%;
+  top: 14%;
+  width: 34vw;
+  z-index: 1;
+}
+
+.hero-review .hero-review-tile-2 {
+  left: 18%;
+  top: 34%;
+  width: 40vw;
+  z-index: 2;
+}
+
+.hero-review .hero-review-tile-3 {
+  left: 42%;
+  top: 40%;
+  width: 52vw;
+  z-index: 4;
+}
+
+.hero-review .hero-review-tile-4 {
+  right: -6%;
+  top: 22%;
+  width: 40vw;
+  z-index: 3;
+}
+
+@media (width >= 900px) {
+  .hero-review.block {
+    background-image: url('https://www.temasekreview.com.sg/assets/homepage/banner-bg.png');
+  }
+
+  .hero-review .hero-review-logo {
+    top: 50px;
+    left: 50px;
+  }
+
+  .hero-review .hero-review-logo img {
+    width: 150px;
+  }
+
+  /* title lockup: top 35px, centred, width min(600px, 31.302vw) */
+  .hero-review .hero-review-lockup {
+    top: 35px;
+    width: min(600px, 31.302vw);
+  }
+
+  /* collage tiles -- exact source positions/sizes
+     tops are px against the 100vh canvas (source key-highlight zone),
+     widths use the same vw clamps as the source */
+  .hero-review .hero-review-tile-1 {
+    left: -6%;
+    top: 10.5px;
+    width: min(400px, 20.833vw);
+    z-index: 1;
+  }
+
+  .hero-review .hero-review-tile-2 {
+    left: 18%;
+    top: 186px;
+    width: min(460px, 23.958vw);
+    z-index: 2;
+  }
+
+  .hero-review .hero-review-tile-3 {
+    left: 45%;
+    top: 217px;
+    width: min(580px, 30.208vw);
+    z-index: 4;
+  }
+
+  .hero-review .hero-review-tile-4 {
+    right: -6%;
+    top: 91px;
+    width: min(450px, 23.438vw);
+    z-index: 3;
+  }
+}

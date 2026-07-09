@@ -1,0 +1,38 @@
+{
+  "variantName": "table-segments",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-07-08T14:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/",
+    "originPage": "Temasek Review 2026 homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "data-table",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "header row + data rows; segment description column with exposure and return metrics",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "portfolio / segment performance tables",
+      "comparison tables with metric columns",
+      "tabular financial data"
+    ],
+    "notSuitableFor": [
+      "card grids",
+      "side-by-side text features"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T14:48:00.000Z"
+  }
+}

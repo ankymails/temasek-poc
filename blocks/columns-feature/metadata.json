@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-08T14:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/",
+    "originPage": "Temasek Review 2026 homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "text column (heading + paragraphs + CTA) beside media column (image/chart/quote portrait)",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "text-beside-image feature rows",
+      "quote with portrait photo",
+      "text beside infographic/chart",
+      "vertically centered two-column teasers"
+    ],
+    "notSuitableFor": [
+      "grids of repeating cards",
+      "large numeric statistic callouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index", "/from-our-chairman"],
+    "reuseCount": 2,
+    "lastUsed": "2026-07-08T17:55:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-video",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-08T14:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/",
+    "originPage": "Temasek Review 2026 homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "video-teaser",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "each card = video thumbnail image with play-button overlay + heading + description",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "video teaser card grids",
+      "story/media highlight cards with play buttons",
+      "two-up or multi-up media features"
+    ],
+    "notSuitableFor": [
+      "plain image cards without video",
+      "text-only card lists"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T14:48:00.000Z"
+  }
+}

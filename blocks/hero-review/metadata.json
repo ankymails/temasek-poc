@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-review",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-07-08T14:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.temasekreview.com.sg/",
+    "originPage": "Temasek Review 2026 homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image + logo + title lockup + overlapping highlight images",
+    "buttonCount": 0,
+    "imageCount": 6
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "annual report / review landing pages",
+      "branded full-bleed mastheads with gradient background",
+      "hero banners with decorative image collages"
+    ],
+    "notSuitableFor": [
+      "simple text hero with single background",
+      "in-page CTA banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-08T14:48:00.000Z"
+  }
+}
