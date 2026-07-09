@@ -73,9 +73,17 @@ body.appear {
   display: block;
 }
 
-/* No top navigation on this site — collapse the empty header. */
 header {
+  height: var(--nav-height);
+}
+
+/* When there is no nav fragment, the header block marks itself empty so it
+ * takes up no space (no default boilerplate nav is shown). */
+header:has(.header.header-empty),
+header .header.header-empty {
   height: 0;
+  min-height: 0;
+  visibility: hidden;
 }
 
 header .header,

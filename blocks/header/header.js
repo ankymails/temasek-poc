@@ -118,6 +118,14 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
+  // No nav document → render nothing (no default boilerplate nav). The empty
+  // marker collapses the header via CSS so it occupies no space.
+  if (!fragment || !fragment.firstElementChild) {
+    block.textContent = '';
+    block.classList.add('header-empty');
+    return;
+  }
+
   // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');

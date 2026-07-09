@@ -1,4 +1,5 @@
 import {
+  loadHeader,
   loadFooter,
   decorateIcons,
   decorateSections,
@@ -314,8 +315,7 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  // Header/nav intentionally not loaded — this site has no top navigation
-  // (matches the live site, which has no /nav document).
+  loadHeader(doc.querySelector('header'));
 
   const main = doc.querySelector('main');
   await loadSections(main);
