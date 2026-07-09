@@ -1,0 +1,66 @@
+{
+  "definitions": [
+    {
+      "title": "Table Segments",
+      "id": "table-segments",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Table Segments",
+              "model": "table-segments"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "table-segments",
+      "fields": [
+        {
+          "component": "container",
+          "name": "rows",
+          "label": "Rows",
+          "description": "First row is the header row (unless the block's Style option includes \"no-header\")",
+          "collapsible": true,
+          "multi": true,
+          "fields": [
+            {
+              "component": "text",
+              "name": "cell1",
+              "label": "Column 1"
+            },
+            {
+              "component": "text",
+              "name": "cell2",
+              "label": "Column 2"
+            },
+            {
+              "component": "text",
+              "name": "cell3",
+              "label": "Column 3"
+            }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "chartImage",
+          "label": "Chart Image",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "chartImageAlt",
+          "label": "Chart Image Alt Text",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
