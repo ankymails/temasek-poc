@@ -73,8 +73,9 @@ body.appear {
   display: block;
 }
 
+/* No top navigation on this site — collapse the empty header. */
 header {
-  height: var(--nav-height);
+  height: 0;
 }
 
 header .header,
