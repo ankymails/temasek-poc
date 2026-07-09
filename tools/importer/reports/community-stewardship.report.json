@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "url": "https://www.temasekreview.com.sg/community-stewardship.html",
+  "path": "community-stewardship",
+  "timestamp": "2026-07-09T07:24:34.299Z",
+  "title": "Community Stewardship | Temasek Review 2026",
+  "template": "chapter-page",
+  "blocks": [
+    "chapter-nav",
+    "callout-case-study"
+  ]
+}
