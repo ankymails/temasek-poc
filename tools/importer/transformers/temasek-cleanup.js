@@ -93,6 +93,8 @@ export default function transform(hookName, element, payload) {
       'TRM26_10Years_Net_Portfolio_Value.svg': 'TRM26_10Years_Net_Portfolio_Value.png',
       'TRM26_Total_Shareholder_Return_wof.svg': 'TRM26_Total_Shareholder_Return_wof.png',
       'TRM26_Towards_Net_Zero_wof.svg': 'TRM26_Towards_Net_Zero_wof.png',
+      // Sustainability chapter delivers the same chart without the _wof suffix.
+      'TRM26_Towards_Net_Zero.svg': 'TRM26_Towards_Net_Zero_wof.png',
       'TRM26_Three_Segment_T2030_Strategy.svg': 'TRM26_Three_Segment_T2030_Strategy.png',
       'TRM26_Four_Pillars_of_Temaseks_AI_Strategy.svg': 'TRM26_Four_Pillars_of_Temaseks_AI_Strategy.png',
       // Performance & Portfolio oversized charts
