@@ -1,3 +1,15 @@
+/* The bar sits on the page's purple gradient, so it needs its own white
+ * background to match the source content-top-nav. Full-bleed white strip with
+ * the row content centered to the content width. The extra `main >` prefix
+ * raises specificity above the boilerplate `main > .section:first-of-type`
+ * rule (which sets background:none for the hero). */
+main > .section.chapter-nav-container {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+
 .chapter-nav.block {
   display: flex;
   align-items: center;
@@ -6,8 +18,13 @@
   max-width: 1030px;
   margin: 0 auto;
   padding: 14px 24px;
+  background: #fff;
   border-bottom: 1px solid #eee;
   font-size: 15px;
+}
+
+.chapter-nav.block.chapter-nav-empty {
+  display: none;
 }
 
 .chapter-nav.block .chapter-nav-prev,
