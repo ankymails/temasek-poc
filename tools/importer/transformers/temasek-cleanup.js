@@ -107,6 +107,22 @@ export default function transform(hookName, element, payload) {
       'TRM26_Illustration_of_Fundamental_Earnings_Impact.svg': 'TRM26_Illustration_of_Fundamental_Earnings_Impact.png',
       'TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.svg': 'TRM26_Portfolio_by_Headquarters_and_Underlying_Country_Exposure.png',
       'TRM26_Portfolio_by_Currency.svg': 'TRM26_Portfolio_by_Currency.png',
+      // Institution oversized charts
+      'TRM26_Protection_of_Temasek_Past_Reserves.svg': 'TRM26_Protection_of_Temasek_Past_Reserves.png',
+      'TRM26_WA_Incentives_Key_Team.svg': 'TRM26_WA_Incentives_Key_Team.png',
+      // Employee-demographics slider: three views x three geographies. We
+      // rasterized the default Global view of each; the Singapore / Outside-SG
+      // variants (all >20KB, so unusable as SVG on DA) fall back to the Global
+      // PNG so no oversized SVG reference survives.
+      'TRM26_Employees_by_Nationality_Global.svg': 'TRM26_Employees_by_Nationality_Global.png',
+      'TRM26_Employees_by_Nationality_Singapore.svg': 'TRM26_Employees_by_Nationality_Global.png',
+      'TRM26_Employees_by_Nationality_Outside_of_Singapore.svg': 'TRM26_Employees_by_Nationality_Global.png',
+      'TRM26_Employees_by_Age_Global.svg': 'TRM26_Employees_by_Age_Global.png',
+      'TRM26_Employees_by_Age_Singapore.svg': 'TRM26_Employees_by_Age_Global.png',
+      'TRM26_Employees_by_Age_Outside_of_Singapore.svg': 'TRM26_Employees_by_Age_Global.png',
+      'TRM26_Employees_by_Gender_Global.svg': 'TRM26_Employees_by_Gender_Global.png',
+      'TRM26_Employees_by_Gender_Singapore.svg': 'TRM26_Employees_by_Gender_Global.png',
+      'TRM26_Employees_by_Gender_Outside_of_Singapore.svg': 'TRM26_Employees_by_Gender_Global.png',
     };
     const CHART_BASE = '/assets/charts';
     element.querySelectorAll('img[src$=".svg"], img[src*=".svg?"]').forEach((img) => {
