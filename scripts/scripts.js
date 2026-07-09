@@ -252,7 +252,20 @@ function decorateAccordionSections(main) {
       });
       control.textContent = anyCollapsed ? 'Collapse all' : 'Expand all';
     });
-    sections[0].before(control);
+
+    // Match the source: the control sits inline on the chapter H1 row,
+    // right-aligned. The H1 lives in the banner (first) section; wrap it and
+    // the control in a flex header row. Fall back to placing it before the
+    // first accordion section if no H1 is found.
+    const bannerHeading = main.querySelector(':scope > .section:first-of-type h1');
+    if (bannerHeading) {
+      const headerRow = document.createElement('div');
+      headerRow.className = 'chapter-header-row';
+      bannerHeading.replaceWith(headerRow);
+      headerRow.append(bannerHeading, control);
+    } else {
+      sections[0].before(control);
+    }
   }
 }
 

@@ -78,6 +78,31 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
+  // tools/importer/parsers/chapter-nav.js
+  function parse3(element, { document }) {
+    const prevA = element.querySelector('.link-to-page[data-type="prev"], a[aria-label^="Previous"]');
+    const nextA = element.querySelector('.link-to-page[data-type="next"], a[aria-label^="Next"]');
+    const titleBtn = element.querySelector(".cmp-contenttopnav__page-link");
+    let titleCell = "";
+    if (titleBtn) {
+      const defSpan = titleBtn.querySelector('span[data-section="default"]') || titleBtn.querySelector("span");
+      if (defSpan) titleCell = defSpan.textContent.replace(/\s+/g, " ").trim();
+    }
+    const mkLink = (a) => {
+      if (!a) return "";
+      const link = document.createElement("a");
+      link.href = a.getAttribute("href") || "#";
+      const label = (a.querySelector(".link-text") || a).textContent.trim();
+      link.textContent = label;
+      return link;
+    };
+    const prevCell = mkLink(prevA);
+    const nextCell = mkLink(nextA);
+    const cells = [[prevCell, titleCell, nextCell]];
+    const block = WebImporter.Blocks.createBlock(document, { name: "chapter-nav", cells });
+    element.replaceWith(block);
+  }
+
   // tools/importer/transformers/temasek-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
@@ -122,6 +147,22 @@ var CustomImportScript = (() => {
         el.removeAttribute("data-video-id");
         el.removeAttribute("onclick");
       });
+      const OVERSIZED_SVG_TO_PNG = {
+        "TRM26_Operating_as_One_Temasek.svg": "TRM26_Operating_as_One_Temasek.png",
+        "TRM26_10Years_Net_Portfolio_Value.svg": "TRM26_10Years_Net_Portfolio_Value.png",
+        "TRM26_Total_Shareholder_Return_wof.svg": "TRM26_Total_Shareholder_Return_wof.png",
+        "TRM26_Towards_Net_Zero_wof.svg": "TRM26_Towards_Net_Zero_wof.png",
+        "TRM26_Three_Segment_T2030_Strategy.svg": "TRM26_Three_Segment_T2030_Strategy.png",
+        "TRM26_Four_Pillars_of_Temaseks_AI_Strategy.svg": "TRM26_Four_Pillars_of_Temaseks_AI_Strategy.png"
+      };
+      const CHART_BASE = "/assets/charts";
+      element.querySelectorAll('img[src$=".svg"], img[src*=".svg?"]').forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        const file = src.split("/").pop().split("?")[0];
+        if (OVERSIZED_SVG_TO_PNG[file]) {
+          img.setAttribute("src", `${CHART_BASE}/${OVERSIZED_SVG_TO_PNG[file]}`);
+        }
+      });
     }
   }
 
@@ -138,8 +179,6 @@ var CustomImportScript = (() => {
         btn.remove();
       });
       WebImporter.DOMUtils.remove(element, [
-        ".contenttopnav",
-        ".cmp-contenttopnav",
         ".page-content__content-share-wrap",
         ".page-content__content-share",
         ".footnote-section",
@@ -195,13 +234,18 @@ var CustomImportScript = (() => {
   // tools/importer/import-chapter-page.js
   var parsers = {
     "callout-case-study": parse,
-    "logo-grid": parse2
+    "logo-grid": parse2,
+    "chapter-nav": parse3
   };
   var PAGE_TEMPLATE = {
     name: "chapter-page",
     description: "Temasek Review editorial chapter page",
     urls: ["https://www.temasekreview.com.sg/strategy.html"],
     blocks: [
+      {
+        name: "chapter-nav",
+        instances: [".contenttopnav"]
+      },
       {
         name: "callout-case-study",
         instances: [".bg-container.bg-light-green.m-t-40"]

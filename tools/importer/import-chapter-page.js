@@ -4,6 +4,7 @@
 // PARSER IMPORTS
 import calloutCaseStudyParser from './parsers/callout-case-study.js';
 import logoGridParser from './parsers/logo-grid.js';
+import chapterNavParser from './parsers/chapter-nav.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/temasek-cleanup.js';
@@ -14,6 +15,7 @@ import sectionsTransformer from './transformers/temasek-sections.js';
 const parsers = {
   'callout-case-study': calloutCaseStudyParser,
   'logo-grid': logoGridParser,
+  'chapter-nav': chapterNavParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
@@ -22,6 +24,10 @@ const PAGE_TEMPLATE = {
   description: 'Temasek Review editorial chapter page',
   urls: ['https://www.temasekreview.com.sg/strategy.html'],
   blocks: [
+    {
+      name: 'chapter-nav',
+      instances: ['.contenttopnav'],
+    },
     {
       name: 'callout-case-study',
       instances: ['.bg-container.bg-light-green.m-t-40'],

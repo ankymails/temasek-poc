@@ -34,9 +34,9 @@ export default function transform(hookName, element, payload) {
       btn.remove();
     });
 
+    // NOTE: .contenttopnav is intentionally NOT removed here — it is parsed into
+    // a chapter-nav block by tools/importer/parsers/chapter-nav.js.
     WebImporter.DOMUtils.remove(element, [
-      '.contenttopnav',
-      '.cmp-contenttopnav',
       '.page-content__content-share-wrap',
       '.page-content__content-share',
       '.footnote-section',

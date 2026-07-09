@@ -434,8 +434,7 @@ main > .section.accordion {
 
 /* expand/collapse all control */
 .accordion-toggle-all {
-  display: inline-block;
-  margin: 0 auto 24px;
+  flex: 0 0 auto;
   border: 0;
   border-radius: 30px;
   padding: 12px 32px;
@@ -447,4 +446,27 @@ main > .section.accordion {
   letter-spacing: 0.35px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* Chapter H1 + Expand-all on one row (matches source layout) */
+.chapter-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.chapter-header-row h1 {
+  margin: 0;
+}
+
+@media (width < 600px) {
+  .chapter-header-row {
+    gap: 12px;
+  }
+
+  .accordion-toggle-all {
+    padding: 10px 22px;
+  }
 }
