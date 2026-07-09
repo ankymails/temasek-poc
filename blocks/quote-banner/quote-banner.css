@@ -1,15 +1,19 @@
-/* Quote banner: full-bleed portrait with an overlapping translucent quote card,
- * matching the source chairman masthead (mint-green palette). */
+/* Quote banner: a full-card portrait (filling the whole card) with an
+ * overlapping translucent quote card, matching the source chairman masthead.
+ * Sized to align with the chapter (.light) content cards. */
 .quote-banner.block {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   min-height: 360px;
-  margin: 0;
+  box-sizing: border-box;
+  max-width: 1150px;
+  margin: 40px auto;
   padding: 40px 24px;
   background: #e7f4f4;
-  border-radius: 20px;
+  border-radius: var(--tr-card-radius, 20px);
+  box-shadow: var(--tr-card-shadow, 0 0 50px 0 rgb(0 0 0 / 10%));
   overflow: hidden;
 }
 
@@ -24,13 +28,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: 20% 90%;
   display: block;
 }
 
 .quote-banner.block .quote-banner-card {
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
   width: 100%;
   max-width: 620px;
   margin: 0;
@@ -85,10 +90,6 @@
   .quote-banner.block {
     min-height: 620px;
     padding: 80px 66px 60px;
-  }
-
-  .quote-banner.block .quote-banner-media img {
-    object-position: center;
   }
 
   .quote-banner.block .quote-banner-card {
