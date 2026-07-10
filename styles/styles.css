@@ -394,6 +394,21 @@ main > .section:first-of-type > div {
   padding: 0;
 }
 
+/* Chapter pages (e.g. Strategy): the banner image and title row align to the
+ * same content width as the accordion below, instead of running full-bleed.
+ * The chapter-nav bar stays full-bleed (it has its own wrapper). */
+main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
+  max-width: 1030px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (width >= 900px) {
+  main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
+    padding: 0 32px;
+  }
+}
+
 @media (width >= 900px) {
   main > .section.light {
     padding: 50px 60px 60px;
