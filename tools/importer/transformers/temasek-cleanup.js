@@ -126,7 +126,11 @@ export default function transform(hookName, element, payload) {
       'TRM26_Employees_by_Gender_Singapore.svg': 'TRM26_Employees_by_Gender_Global.png',
       'TRM26_Employees_by_Gender_Outside_of_Singapore.svg': 'TRM26_Employees_by_Gender_Global.png',
     };
-    const CHART_BASE = '/assets/charts';
+    // Absolute URL (not root-relative): Document Authoring fetches each image at
+    // publish time to upload it into its media store. Root-relative /assets/...
+    // paths can't be resolved by DA and get stored as about:error, so point at
+    // the published aem.live origin where these committed PNGs are served.
+    const CHART_BASE = 'https://main--temasek-poc--ankymails.aem.live/assets/charts';
     element.querySelectorAll('img[src$=".svg"], img[src*=".svg?"]').forEach((img) => {
       const src = img.getAttribute('src') || '';
       const file = src.split('/').pop().split('?')[0];
