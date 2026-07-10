@@ -401,13 +401,7 @@ main > .section.chapter-nav-container:not(.quote-banner-container) > .default-co
   box-sizing: border-box;
   max-width: 1150px;
   margin: 0 auto;
-  padding: 0 0 24px;
-}
-
-@media (width >= 900px) {
-  main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
-    padding: 0 0 32px;
-  }
+  padding: 0;
 }
 
 @media (width >= 900px) {
@@ -424,6 +418,12 @@ main > .section.chapter-nav-container:not(.quote-banner-container) > .default-co
 main > .section.accordion {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+/* The chapter title row already provides spacing above the first accordion,
+ * so drop its top margin to keep the gap balanced with the image above. */
+main > .section.chapter-nav-container:not(.quote-banner-container) + .section.accordion {
+  margin-top: 0;
 }
 
 .accordion-header {
@@ -499,12 +499,12 @@ main > .section.accordion {
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 0 30px;
+  padding: 24px 30px;
 }
 
 @media (width >= 900px) {
   .chapter-header-row {
-    padding: 0 60px;
+    padding: 32px 60px;
   }
 }
 
