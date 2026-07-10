@@ -400,12 +400,12 @@ main > .section:first-of-type > div {
 main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
   max-width: 1030px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 24px 24px;
 }
 
 @media (width >= 900px) {
   main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
-    padding: 0 32px;
+    padding: 0 32px 32px;
   }
 }
 
