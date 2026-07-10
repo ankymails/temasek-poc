@@ -351,6 +351,7 @@ main > .section > div {
 main {
   background: var(--tr-page-gradient);
   background-attachment: fixed;
+  padding-bottom: 80px;
 }
 
 /* chapter cards */
