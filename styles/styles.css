@@ -394,12 +394,12 @@ main > .section:first-of-type > div {
   padding: 0;
 }
 
-/* Chapter pages (e.g. Strategy): the banner image spans the same outer width
- * as the accordion cards below (not full-bleed). The title row text is inset to
- * line up with the accordion text. The chapter-nav bar stays full-bleed. */
+/* Chapter pages (e.g. Strategy): the banner image and title align to the same
+ * content column as the accordion text below (a centred 1030px column lines up
+ * with the accordion cards' inset text). The chapter-nav bar stays full-bleed. */
 main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
   box-sizing: border-box;
-  max-width: 1150px;
+  max-width: 1030px;
   margin: 0 auto;
   padding: 0;
 }
@@ -499,12 +499,12 @@ main > .section.chapter-nav-container:not(.quote-banner-container) + .section.ac
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 24px 30px;
+  padding: 24px 0;
 }
 
 @media (width >= 900px) {
   .chapter-header-row {
-    padding: 32px 60px;
+    padding: 32px 0;
   }
 }
 
