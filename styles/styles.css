@@ -394,12 +394,12 @@ main > .section:first-of-type > div {
   padding: 0;
 }
 
-/* Chapter pages (e.g. Strategy): the banner image and title align to the same
- * content column as the accordion text below (a centred 1030px column lines up
- * with the accordion cards' inset text). The chapter-nav bar stays full-bleed. */
+/* Chapter pages (e.g. Strategy): the banner image and title align to the
+ * accordion cards' outer edge below (centred 1150px column). The chapter-nav
+ * bar stays full-bleed. */
 main > .section.chapter-nav-container:not(.quote-banner-container) > .default-content-wrapper {
   box-sizing: border-box;
-  max-width: 1030px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 0;
 }
