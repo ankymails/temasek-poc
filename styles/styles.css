@@ -420,10 +420,9 @@ main > .section.accordion {
   padding-bottom: 0;
 }
 
-/* The chapter title row already provides spacing above the first accordion,
- * so drop its top margin to keep the gap balanced with the image above. */
+/* Extra breathing room between the chapter title and the first accordion. */
 main > .section.chapter-nav-container:not(.quote-banner-container) + .section.accordion {
-  margin-top: 0;
+  margin-top: 24px;
 }
 
 .accordion-header {
